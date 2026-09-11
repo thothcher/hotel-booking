@@ -1,0 +1,107 @@
+<section class="page-head">
+  <div class="container">
+    <span class="eyebrow">Our story</span>
+    <h1>About Aurora Grand</h1>
+    <p>A small hotel run by the same family for more than twenty-five years.</p>
+  </div>
+</section>
+
+<!-- ── ისტორია ────────────────────────────────────────── -->
+<section class="section">
+  <div class="container about-split">
+    <div class="about-split__media">
+      <img src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=1000&q=80"
+           alt="The lobby lounge" appImgFallback>
+    </div>
+
+    <div>
+      <span class="eyebrow">Since 1998</span>
+      <h2>It started with four rooms above a bakery</h2>
+      <p>
+        Nino and Zurab Kiknadze bought the building in 1997, when the roof leaked
+        and the staircase creaked in three places. They fixed the roof, kept the
+        staircase, and opened four rooms the following spring.
+      </p>
+      <p>
+        Twenty-five years later their daughter runs the front desk, the building
+        has eight rooms, and the staircase still creaks &mdash; on purpose.
+      </p>
+      <p>
+        We are not a chain and we do not want to be. What we can promise is a clean,
+        quiet room, breakfast worth waking up for, and someone at the desk at 3 a.m.
+        if your flight is late.
+      </p>
+      <a class="btn btn--primary" routerLink="/rooms">
+        <i class="bi bi-door-open"></i> See our rooms
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── ციფრები ────────────────────────────────────────── -->
+<section class="numbers">
+  <div class="container numbers__grid">
+    @for (n of numbers; track n.label) {
+      <div class="number">
+        <strong>{{ n.value }}</strong>
+        <span>{{ n.label }}</span>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ── ღირებულებები ───────────────────────────────────── -->
+<section class="section section--cream">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What we care about</span>
+      <h2>Three things we do not compromise on</h2>
+    </div>
+
+    <div class="values">
+      @for (v of values; track v.title) {
+        <div class="value">
+          <i class="bi {{ v.icon }}"></i>
+          <h3>{{ v.title }}</h3>
+          <p>{{ v.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── გუნდი ──────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The people here</span>
+      <h2>You will meet all of them</h2>
+    </div>
+
+    <div class="team">
+      @for (m of team; track m.name) {
+        <figure class="member">
+          <img [src]="m.photo" [alt]="m.name" appImgFallback loading="lazy">
+          <figcaption>
+            <strong>{{ m.name }}</strong>
+            <span>{{ m.role }}</span>
+          </figcaption>
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────── -->
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <div>
+      <h2>Come and stay with us</h2>
+      <p>Rooms from $80 a night, breakfast included.</p>
+    </div>
+    <div class="cta-band__actions">
+      <a class="btn btn--gold" routerLink="/rooms">Book a room</a>
+      <a class="btn btn--light" routerLink="/contact">Contact us</a>
+    </div>
+  </div>
+</section>

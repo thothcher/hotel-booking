@@ -1,0 +1,106 @@
+<section class="page-head">
+  <div class="container">
+    <span class="eyebrow">Accommodation</span>
+    <h1>Rooms &amp; suites</h1>
+    <p>Eight rooms, from a compact single to a two-bedroom suite on the top floor.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container rooms-layout">
+
+    <!-- ── ფილტრები ─────────────────────────────────── -->
+    <aside class="filters panel">
+      <h2 class="filters__title"><i class="bi bi-sliders"></i> Filter rooms</h2>
+
+      <form (ngSubmit)="load()">
+        <div class="field">
+          <label for="f-search">Search</label>
+          <input id="f-search" type="text" name="search" [(ngModel)]="search"
+                 placeholder="Deluxe, balcony, suite...">
+        </div>
+
+        <div class="field">
+          <label for="f-in">Check in</label>
+          <input id="f-in" type="date" name="checkIn" [min]="minDate"
+                 [(ngModel)]="checkIn" (ngModelChange)="onCheckInChange()">
+        </div>
+
+        <div class="field">
+          <label for="f-out">Check out</label>
+          <input id="f-out" type="date" name="checkOut" [min]="checkIn || minDate"
+                 [(ngModel)]="checkOut">
+        </div>
+
+        <div class="field">
+          <label for="f-guests">Guests</label>
+          <select id="f-guests" name="guests" [(ngModel)]="guests">
+            <option [ngValue]="null">Any</option>
+            @for (n of [1, 2, 3, 4, 5, 6]; track n) {
+              <option [ngValue]="n">{{ n }}+ guests</option>
+            }
+          </select>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="f-min">Min price</label>
+            <input id="f-min" type="number" name="minPrice" min="0" step="10"
+                   [(ngModel)]="minPrice" placeholder="0">
+          </div>
+          <div class="field">
+            <label for="f-max">Max price</label>
+            <input id="f-max" type="number" name="maxPrice" min="0" step="10"
+                   [(ngModel)]="maxPrice" placeholder="600">
+          </div>
+        </div>
+
+        <button class="btn btn--primary btn--block" type="submit">
+          <i class="bi bi-search"></i> Apply filters
+        </button>
+        <button class="btn btn--outline btn--block" type="button" (click)="reset()"
+                style="margin-top: .6rem;">
+          Clear all
+        </button>
+      </form>
+
+      <div class="filters__note">
+        <i class="bi bi-info-circle"></i>
+        Pick both dates to hide rooms that are already booked for that period.
+      </div>
+    </aside>
+
+    <!-- ── შედეგები ─────────────────────────────────── -->
+    <div class="results">
+      @if (loading()) {
+        <div class="spinner"></div>
+      } @else if (failed()) {
+        <div class="empty">
+          <i class="bi bi-wifi-off"></i>
+          <h3>Could not load rooms</h3>
+          <p>The API did not answer. Make sure the backend is running, then try again.</p>
+          <button class="btn btn--primary" type="button" (click)="load()">Try again</button>
+        </div>
+      } @else if (rooms().length === 0) {
+        <div class="empty">
+          <i class="bi bi-search"></i>
+          <h3>No rooms match your filters</h3>
+          <p>Try widening the price range, changing the dates or lowering the guest count.</p>
+          <button class="btn btn--outline" type="button" (click)="reset()">Clear filters</button>
+        </div>
+      } @else {
+        <p class="results__count">
+          <strong>{{ rooms().length }}</strong>
+          {{ rooms().length === 1 ? 'room' : 'rooms' }} available
+        </p>
+
+        <div class="results__grid">
+          @for (room of rooms(); track room.id) {
+            <app-room-card [room]="room" />
+          }
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

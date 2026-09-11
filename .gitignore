@@ -1,0 +1,18 @@
+# .NET
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# SQLite — გაშვებისას თვითონ იქმნება
+*.db
+*.db-shm
+*.db-wal
+
+# Angular-ის build აქ მხოლოდ Docker-ში ჩაიდება
+wwwroot/
+
+# OS
+Thumbs.db
+.DS_Store

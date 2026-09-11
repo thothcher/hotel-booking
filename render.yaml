@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: aurora-grand
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/rooms
+    envVars:
+      - key: Jwt__Key
+        generateValue: true

@@ -1,0 +1,70 @@
+<section class="page-head">
+  <div class="container">
+    <h1>Contact us</h1>
+    <p>Questions about a booking, a late arrival or a special request? Write to us.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container contact-layout">
+
+    <!-- ── ფორმა ──────────────────────────────────────── -->
+    <div class="panel contact-form">
+      <h2>Send a message</h2>
+      <p class="text-muted">Fill in the form and we will answer by email.</p>
+
+      <form [formGroup]="form" (ngSubmit)="send()" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="c-name">Your name</label>
+            <input id="c-name" type="text" formControlName="name" placeholder="Nino Beridze"
+                   [class.is-invalid]="invalid('name')">
+            @if (invalid('name')) { <span class="error">Please enter your name.</span> }
+          </div>
+
+          <div class="field">
+            <label for="c-email">Email</label>
+            <input id="c-email" type="email" formControlName="email" placeholder="you@example.com"
+                   [class.is-invalid]="invalid('email')">
+            @if (invalid('email')) { <span class="error">Please enter a valid email.</span> }
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="c-subject">Subject</label>
+          <input id="c-subject" type="text" formControlName="subject"
+                 placeholder="Late arrival on 12 October"
+                 [class.is-invalid]="invalid('subject')">
+          @if (invalid('subject')) { <span class="error">Please add a subject.</span> }
+        </div>
+
+        <div class="field">
+          <label for="c-message">Message</label>
+          <textarea id="c-message" formControlName="message" rows="6"
+                    placeholder="How can we help?"
+                    [class.is-invalid]="invalid('message')"></textarea>
+          @if (invalid('message')) {
+            <span class="error">Please write at least 10 characters.</span>
+          }
+        </div>
+
+        <button class="btn btn--primary" type="submit" [disabled]="sending()">
+          {{ sending() ? 'Sending...' : 'Send message' }}
+        </button>
+      </form>
+    </div>
+
+    <!-- ── საკონტაქტო ინფორმაცია ──────────────────────── -->
+    <aside class="contact-info">
+      @for (d of details; track d.title) {
+        <div class="info-block">
+          <h3>{{ d.title }}</h3>
+          @for (line of d.lines; track line) {
+            <p>{{ line }}</p>
+          }
+        </div>
+      }
+    </aside>
+
+  </div>
+</section>

@@ -1,0 +1,150 @@
+/* login.html და register.html ერთსა და იმავე სტილს იყენებს */
+
+.auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - var(--header-h));
+}
+
+/* ── მარცხენა მხარე: ფოტო ─────────────────────────────── */
+.auth__media {
+  position: relative;
+  overflow: hidden;
+
+  img { width: 100%; height: 100%; object-fit: cover; }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 31, 51, .35) 0%, rgba(10, 31, 51, .85) 100%);
+  }
+}
+
+.auth__media-text {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  padding: 2.5rem;
+  color: var(--white);
+
+  h2 { color: var(--white); margin-bottom: .35rem; }
+  p  { color: rgba(255, 255, 255, .8); margin: 0; }
+}
+
+/* ── მარჯვენა მხარე: ფორმა ────────────────────────────── */
+.auth__panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background: var(--cream);
+}
+
+.auth__form {
+  width: 100%;
+  max-width: 420px;
+
+  h1 { margin-bottom: .3rem; }
+
+  > p.text-muted { margin-bottom: 1.75rem; font-size: .93rem; }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: .74rem;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .4rem;
+  }
+
+  .btn { margin-top: .5rem; }
+}
+
+.auth__switch {
+  text-align: center;
+  font-size: .9rem;
+  color: var(--text-muted);
+  margin: 1.5rem 0 0;
+
+  a { font-weight: 600; color: var(--navy); text-decoration: underline; }
+}
+
+/* ── დემო ანგარიშები ──────────────────────────────────── */
+.demo {
+  margin-top: 2rem;
+  padding: 1.15rem;
+  background: var(--white);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    font-family: 'Inter', sans-serif;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: .25rem;
+
+    i { color: var(--gold); font-size: .95rem; }
+  }
+
+  > p { font-size: .82rem; color: var(--text-muted); margin-bottom: .85rem; }
+}
+
+.demo__list {
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+
+.demo__item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: .15rem .75rem;
+  width: 100%;
+  text-align: left;
+  padding: .55rem .75rem;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+
+  &:hover { border-color: var(--gold); background: var(--gold-soft); }
+
+  strong { font-size: .85rem; color: var(--navy); }
+  span   { font-size: .78rem; color: var(--text-muted); grid-column: 1; }
+}
+
+.demo__pass {
+  grid-column: 2 !important;
+  grid-row: 1 / span 2;
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  font-size: .75rem !important;
+  color: var(--navy) !important;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .15rem .4rem;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .auth { grid-template-columns: 1fr; }
+
+  .auth__media {
+    height: 200px;
+    order: -1;
+  }
+
+  .auth__media-text { padding: 1.5rem; h2 { font-size: 1.5rem; } }
+  .auth__panel { padding: 2.5rem 1.25rem; }
+}

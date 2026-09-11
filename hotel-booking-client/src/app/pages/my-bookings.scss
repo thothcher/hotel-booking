@@ -1,0 +1,142 @@
+/* ── სტატისტიკა ───────────────────────────────────────── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: 1.15rem 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  strong {
+    display: block;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+
+  span { font-size: .8rem; color: var(--text-muted); }
+}
+
+.stat__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: var(--radius);
+  background: var(--gold-soft);
+  color: var(--gold);
+  font-size: 1.15rem;
+}
+
+/* ── ჯავშნის ბარათი ───────────────────────────────────── */
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.booking {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow .25s;
+
+  &:hover { box-shadow: var(--shadow); }
+
+  &--cancelled {
+    opacity: .72;
+    .booking__img img { filter: grayscale(1); }
+  }
+}
+
+.booking__img {
+  display: block;
+  background: var(--cream);
+
+  img { width: 100%; height: 100%; min-height: 170px; object-fit: cover; }
+}
+
+.booking__body { padding: 1.25rem 1.5rem; }
+
+.booking__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  h3 { margin: 0; font-size: 1.2rem; }
+}
+
+/* ── დეტალები ─────────────────────────────────────────── */
+.booking__facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 0 0 1.15rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid var(--border);
+
+  dt {
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: .25rem;
+
+    i { color: var(--gold); font-size: .85rem; }
+  }
+
+  dd {
+    margin: 0;
+    font-size: .92rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .price { color: var(--navy); font-weight: 700; }
+}
+
+.booking__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.booking__ref {
+  font-size: .8rem;
+  color: var(--text-muted);
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .booking { grid-template-columns: 1fr; }
+  .booking__img img { min-height: 0; aspect-ratio: 16 / 8; }
+  .booking__facts { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+  .stats { grid-template-columns: 1fr; }
+  .booking__facts { grid-template-columns: 1fr 1fr; }
+  .booking__foot { flex-direction: column; align-items: stretch; }
+}

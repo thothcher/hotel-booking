@@ -1,0 +1,146 @@
+@if (loading()) {
+  <div class="container"><div class="spinner"></div></div>
+} @else if (notFound() || !room()) {
+  <div class="container section">
+    <div class="empty">
+      <i class="bi bi-door-closed"></i>
+      <h3>Room not found</h3>
+      <p>This room may have been removed. Have a look at the rooms we do have.</p>
+      <a class="btn btn--primary" href="/rooms">Browse rooms</a>
+    </div>
+  </div>
+} @else {
+  <article class="detail">
+
+    <!-- ── დიდი სურათი ─────────────────────────────── -->
+    <div class="detail__hero">
+      <img [src]="room()!.imageUrl" [alt]="room()!.name" appImgFallback>
+      <div class="detail__hero-overlay">
+        <div class="container">
+          <span class="eyebrow">Room {{ room()!.id }}</span>
+          <h1>{{ room()!.name }}</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container section section--tight">
+      <div class="detail__layout">
+
+        <!-- ── აღწერა ──────────────────────────────── -->
+        <div class="detail__main">
+          <div class="detail__facts">
+            <span>
+              <i class="bi bi-people"></i>
+              Up to {{ room()!.maxGuests }} {{ room()!.maxGuests === 1 ? 'guest' : 'guests' }}
+            </span>
+            <span><i class="bi bi-cash-coin"></i> ${{ room()!.pricePerNight }} per night</span>
+            @if (room()!.isAvailable) {
+              <span class="ok"><i class="bi bi-check-circle"></i> Open for booking</span>
+            } @else {
+              <span class="no"><i class="bi bi-x-circle"></i> Currently closed</span>
+            }
+          </div>
+
+          <h2>About this room</h2>
+          <p class="detail__desc">{{ room()!.description }}</p>
+
+          <h2>What's in the room</h2>
+          <ul class="amenity-grid">
+            @for (a of roomAmenities; track a.label) {
+              <li><i class="bi {{ a.icon }}"></i> {{ a.label }}</li>
+            }
+          </ul>
+
+          <h2>House rules</h2>
+          <ul class="rules">
+            <li><i class="bi bi-clock"></i> Check-in from 14:00, check-out until 12:00</li>
+            <li><i class="bi bi-credit-card"></i> Payment on arrival, cash or card</li>
+            <li><i class="bi bi-x-circle"></i> Free cancellation up to 24 hours before arrival</li>
+            <li><i class="bi bi-slash-circle"></i> No smoking inside the building</li>
+          </ul>
+
+          @if (bookedPeriods().length > 0) {
+            <h2>Already booked</h2>
+            <p class="text-muted" style="font-size: .9rem;">
+              These dates are taken. Anything outside them is free.
+            </p>
+            <ul class="booked-list">
+              @for (p of bookedPeriods(); track p.checkIn) {
+                <li>
+                  <i class="bi bi-calendar2-x"></i>
+                  {{ p.checkIn | date: 'd MMM y' }} &rarr; {{ p.checkOut | date: 'd MMM y' }}
+                </li>
+              }
+            </ul>
+          }
+        </div>
+
+        <!-- ── ჯავშნის ფორმა ───────────────────────── -->
+        <aside class="booking-box panel">
+          <div class="booking-box__price">
+            <strong>${{ room()!.pricePerNight }}</strong>
+            <span>per night</span>
+          </div>
+
+          @if (!room()!.isAvailable) {
+            <div class="notice notice--warn">
+              <i class="bi bi-exclamation-triangle"></i>
+              This room is temporarily closed for bookings. Please pick another room.
+            </div>
+          } @else {
+            <form (ngSubmit)="book()">
+              <div class="field">
+                <label for="b-in">Check in</label>
+                <input id="b-in" type="date" name="checkIn" [min]="minDate"
+                       [(ngModel)]="checkIn" (ngModelChange)="onDatesChange()" required>
+              </div>
+
+              <div class="field">
+                <label for="b-out">Check out</label>
+                <input id="b-out" type="date" name="checkOut" [min]="checkIn"
+                       [(ngModel)]="checkOut" (ngModelChange)="onDatesChange()" required>
+              </div>
+
+              <!-- ცოცხალი გამოთვლა -->
+              <div class="summary">
+                <div class="summary__row">
+                  <span>${{ room()!.pricePerNight }} &times; {{ nights() }} {{ nights() === 1 ? 'night' : 'nights' }}</span>
+                  <span>${{ total() }}</span>
+                </div>
+                <div class="summary__row">
+                  <span>Service fee</span>
+                  <span>Included</span>
+                </div>
+                <div class="summary__row summary__row--total">
+                  <span>Total</span>
+                  <span>${{ total() }}</span>
+                </div>
+              </div>
+
+              <button class="btn btn--gold btn--block" type="submit" [disabled]="booking() || nights() < 1">
+                @if (booking()) {
+                  <i class="bi bi-hourglass-split"></i> Booking...
+                } @else {
+                  <i class="bi bi-calendar-check"></i> Book this room
+                }
+              </button>
+
+              @if (!auth.isLoggedIn()) {
+                <p class="booking-box__hint">
+                  <i class="bi bi-info-circle"></i>
+                  You will be asked to sign in first. No card is charged online.
+                </p>
+              } @else {
+                <p class="booking-box__hint">
+                  <i class="bi bi-shield-check"></i>
+                  Free cancellation up to 24 hours before check-in.
+                </p>
+              }
+            </form>
+          }
+        </aside>
+
+      </div>
+    </div>
+  </article>
+}

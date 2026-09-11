@@ -1,0 +1,273 @@
+/* admin-rooms.html და admin-bookings.html საერთო სტილი */
+
+/* ── ზედა ზოლი ────────────────────────────────────────── */
+.admin-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: .35rem;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .25rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .5rem 1.1rem;
+    border-radius: var(--radius-sm);
+    font-size: .87rem;
+    font-weight: 500;
+    color: var(--text-muted);
+
+    &:hover { color: var(--navy); }
+
+    &.is-active {
+      background: var(--navy);
+      color: var(--white);
+    }
+  }
+}
+
+/* ── ფორმის პანელი ────────────────────────────────────── */
+.admin-form {
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+  animation: panel-in .2s ease-out;
+}
+
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.admin-form__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+
+  h2 { margin: 0; font-size: 1.25rem; }
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: .95rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: .35rem;
+  border-radius: var(--radius-sm);
+
+  &:hover { background: var(--cream); color: var(--text); }
+}
+
+.admin-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+}
+
+.admin-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: .6rem;
+  padding-top: 1.25rem;
+  margin-top: .5rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── გადახედვა ────────────────────────────────────────── */
+.admin-form__preview {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  padding: 1rem;
+  background: var(--cream);
+  border-radius: var(--radius);
+  height: fit-content;
+
+  img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    margin-bottom: .6rem;
+    background: var(--border);
+  }
+
+  strong { color: var(--navy); font-size: .98rem; }
+}
+
+.preview-label {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: .5rem;
+}
+
+.preview-price { font-size: .82rem; color: var(--text-muted); }
+
+/* ── ჩამრთველი ────────────────────────────────────────── */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--navy);
+  cursor: pointer;
+
+  input { width: 18px; height: 18px; accent-color: var(--navy); cursor: pointer; }
+}
+
+/* ── ცხრილის უჯრები ───────────────────────────────────── */
+.cell-room {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  min-width: 280px;
+
+  img {
+    width: 62px;
+    height: 46px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+    background: var(--cream);
+  }
+
+  strong { display: block; color: var(--navy); font-size: .92rem; }
+
+  span {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: .8rem;
+    color: var(--text-muted);
+    max-width: 340px;
+  }
+}
+
+.cell-guest {
+  strong { display: block; color: var(--navy); font-size: .9rem; }
+  span   { font-size: .8rem; color: var(--text-muted); }
+}
+
+.cell-dates {
+  white-space: nowrap;
+
+  strong { display: block; font-size: .88rem; font-weight: 500; }
+  span   { font-size: .78rem; color: var(--text-muted); }
+}
+
+th.right, td.right { text-align: right; }
+
+.row-actions {
+  display: inline-flex;
+  gap: .35rem;
+  justify-content: flex-end;
+
+  .btn { padding: .45rem .6rem; }
+}
+
+/* ── მოკლე ციფრები (bookings) ─────────────────────────── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.mini-stat {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  span {
+    font-size: .74rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.7rem;
+    color: var(--navy);
+    line-height: 1.15;
+  }
+
+  .amber { color: var(--amber); }
+  .green { color: var(--green); }
+}
+
+@media (max-width: 860px) {
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── შენიშვნა ─────────────────────────────────────────── */
+.admin-note {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: 1rem 0 0;
+  font-size: .84rem;
+  color: var(--text-muted);
+
+  i { color: var(--gold); }
+}
+
+/* ── ფილტრები (bookings) ──────────────────────────────── */
+.status-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+
+  button {
+    padding: .45rem 1rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: .84rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color .2s, background .2s, color .2s;
+
+    &:hover { border-color: var(--navy-light); color: var(--navy); }
+
+    &.is-active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+  }
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 860px) {
+  .admin-form__grid { grid-template-columns: 1fr; }
+  .admin-form__preview { order: -1; }
+  .admin-bar { flex-direction: column; align-items: stretch; }
+  .admin-tabs { justify-content: center; }
+}

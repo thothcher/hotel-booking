@@ -1,0 +1,67 @@
+.rooms-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  align-items: start;
+  gap: 2rem;
+}
+
+/* ── ფილტრები ─────────────────────────────────────────── */
+.filters {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+  padding: 1.5rem;
+}
+
+.filters__title {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  padding-bottom: .9rem;
+  border-bottom: 1px solid var(--border);
+
+  i { color: var(--gold); font-size: 1rem; }
+}
+
+.filters__note {
+  display: flex;
+  gap: .55rem;
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+
+  i { color: var(--gold); margin-top: .12rem; }
+}
+
+/* ── შედეგები ─────────────────────────────────────────── */
+.results__count {
+  font-size: .9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+
+  strong { color: var(--navy); }
+}
+
+.results__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 1000px) {
+  .rooms-layout { grid-template-columns: 1fr; }
+  .filters { position: static; }
+}
+
+@media (max-width: 640px) {
+  .results__grid { grid-template-columns: 1fr; }
+}

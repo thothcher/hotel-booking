@@ -1,0 +1,66 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+
+    <a class="brand" routerLink="/" (click)="closeMenu()">
+      <i class="bi bi-building"></i>
+      <span class="brand__name">Aurora Grand</span>
+    </a>
+
+    <button class="burger" type="button" (click)="toggleMenu()" aria-label="Menu">
+      <i class="bi" [class.bi-list]="!menuOpen()" [class.bi-x-lg]="menuOpen()"></i>
+    </button>
+
+    <nav class="nav" [class.nav--open]="menuOpen()">
+      <ul class="nav__links">
+        <li><a routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Home</a></li>
+        <li><a routerLink="/rooms" routerLinkActive="is-active" (click)="closeMenu()">Rooms</a></li>
+        <li><a routerLink="/about" routerLinkActive="is-active" (click)="closeMenu()">About</a></li>
+        <li><a routerLink="/contact" routerLinkActive="is-active" (click)="closeMenu()">Contact</a></li>
+
+        @if (auth.isStaff()) {
+          <li><a routerLink="/admin/rooms" routerLinkActive="is-active" (click)="closeMenu()">Manage rooms</a></li>
+          <li><a routerLink="/admin/bookings" routerLinkActive="is-active" (click)="closeMenu()">Manage bookings</a></li>
+        }
+      </ul>
+
+      <div class="nav__actions">
+        @if (!auth.isLoggedIn()) {
+          <a class="btn btn--outline btn--sm" routerLink="/login" (click)="closeMenu()">Sign in</a>
+          <a class="btn btn--gold btn--sm" routerLink="/register" (click)="closeMenu()">Create account</a>
+        } @else {
+          <div class="account">
+            <button class="account__trigger" type="button" (click)="toggleUserMenu($event)">
+              <span class="account__avatar">{{ auth.initials() }}</span>
+              <span class="account__name">{{ auth.fullName() }}</span>
+              <i class="bi bi-chevron-down"></i>
+            </button>
+
+            @if (userMenuOpen()) {
+              <div class="account__menu">
+                <div class="account__head">
+                  <strong>{{ auth.fullName() }}</strong>
+                  <span>{{ auth.user()?.email }}</span>
+                  <span class="badge badge--muted">{{ auth.user()?.role }}</span>
+                </div>
+                <a routerLink="/my-bookings" (click)="closeMenu()">
+                  <i class="bi bi-journal-text"></i> My bookings
+                </a>
+                @if (auth.isStaff()) {
+                  <a routerLink="/admin/rooms" (click)="closeMenu()">
+                    <i class="bi bi-door-open"></i> Manage rooms
+                  </a>
+                  <a routerLink="/admin/bookings" (click)="closeMenu()">
+                    <i class="bi bi-calendar-check"></i> Manage bookings
+                  </a>
+                }
+                <button type="button" (click)="logout()">
+                  <i class="bi bi-box-arrow-right"></i> Sign out
+                </button>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </nav>
+  </div>
+</header>

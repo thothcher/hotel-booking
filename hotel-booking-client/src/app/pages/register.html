@@ -1,0 +1,108 @@
+<section class="auth">
+  <div class="auth__media">
+    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80"
+         alt="The hotel pool at dusk" appImgFallback>
+    <div class="auth__media-text">
+      <h2>Join us</h2>
+      <p>Create an account once and book in two clicks every time after.</p>
+    </div>
+  </div>
+
+  <div class="auth__panel">
+    <div class="auth__form">
+      <span class="eyebrow">Aurora Grand</span>
+      <h1>Create account</h1>
+      <p class="text-muted">It takes less than a minute. No card required.</p>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="firstName">First name</label>
+            <input id="firstName" type="text" formControlName="firstName"
+                   autocomplete="given-name" placeholder="Nino"
+                   [class.is-invalid]="invalid('firstName')">
+            @if (invalid('firstName')) {
+              <span class="error">Please enter your first name.</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="lastName">Last name</label>
+            <input id="lastName" type="text" formControlName="lastName"
+                   autocomplete="family-name" placeholder="Beridze"
+                   [class.is-invalid]="invalid('lastName')">
+            @if (invalid('lastName')) {
+              <span class="error">Please enter your last name.</span>
+            }
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" type="email" formControlName="email"
+                 autocomplete="email" placeholder="you@example.com"
+                 [class.is-invalid]="invalid('email')">
+          @if (invalid('email')) {
+            <span class="error">
+              @if (form.controls.email.hasError('required')) {
+                Email is required.
+              } @else {
+                Please enter a valid email address.
+              }
+            </span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" formControlName="password"
+                 autocomplete="new-password" placeholder="At least 6 characters"
+                 [class.is-invalid]="invalid('password')">
+          @if (invalid('password')) {
+            <span class="error">
+              @if (form.controls.password.hasError('required')) {
+                Password is required.
+              } @else {
+                Password must be at least 6 characters long.
+              }
+            </span>
+          }
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="country">Country</label>
+            <input id="country" type="text" formControlName="country"
+                   autocomplete="country-name" placeholder="Georgia"
+                   [class.is-invalid]="invalid('country')">
+            @if (invalid('country')) {
+              <span class="error">Country is required.</span>
+            }
+          </div>
+
+          <div class="field">
+            <label for="city">City</label>
+            <input id="city" type="text" formControlName="city"
+                   autocomplete="address-level2" placeholder="Tbilisi"
+                   [class.is-invalid]="invalid('city')">
+            @if (invalid('city')) {
+              <span class="error">City is required.</span>
+            }
+          </div>
+        </div>
+
+        <button class="btn btn--primary btn--block" type="submit" [disabled]="loading()">
+          @if (loading()) {
+            <i class="bi bi-hourglass-split"></i> Creating account...
+          } @else {
+            <i class="bi bi-person-plus"></i> Create account
+          }
+        </button>
+      </form>
+
+      <p class="auth__switch">
+        Already have an account? <a routerLink="/login">Sign in</a>
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,188 @@
+<section class="page-head">
+  <div class="container">
+    <span class="eyebrow">Staff area</span>
+    <h1>Manage rooms</h1>
+    <p>Add new rooms, edit prices and photos, or take a room off the booking list.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+
+    <!-- ── ტაბები + ღილაკი ────────────────────────────── -->
+    <div class="admin-bar">
+      <nav class="admin-tabs">
+        <a routerLink="/admin/rooms" class="is-active"><i class="bi bi-door-open"></i> Rooms</a>
+        <a routerLink="/admin/bookings"><i class="bi bi-calendar-check"></i> Bookings</a>
+      </nav>
+
+      <button class="btn btn--primary" type="button" (click)="startCreate()">
+        <i class="bi bi-plus-lg"></i> Add room
+      </button>
+    </div>
+
+    <!-- ── ფორმა ──────────────────────────────────────── -->
+    @if (formOpen()) {
+      <div class="admin-form panel">
+        <div class="admin-form__head">
+          <h2>{{ editingId() === null ? 'New room' : 'Edit room' }}</h2>
+          <button type="button" class="icon-btn" (click)="closeForm()" aria-label="Close">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+          <div class="admin-form__grid">
+            <div class="admin-form__fields">
+              <div class="field">
+                <label for="r-name">Room name</label>
+                <input id="r-name" type="text" formControlName="name"
+                       placeholder="Deluxe Balcony 301" [class.is-invalid]="invalid('name')">
+                @if (invalid('name')) { <span class="error">Name is required.</span> }
+              </div>
+
+              <div class="field">
+                <label for="r-desc">Description</label>
+                <textarea id="r-desc" formControlName="description" rows="4"
+                          placeholder="What makes this room special?"
+                          [class.is-invalid]="invalid('description')"></textarea>
+                @if (invalid('description')) {
+                  <span class="error">Please write at least 10 characters.</span>
+                }
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="r-price">Price per night (USD)</label>
+                  <input id="r-price" type="number" formControlName="pricePerNight"
+                         min="1" max="10000" step="5" [class.is-invalid]="invalid('pricePerNight')">
+                  @if (invalid('pricePerNight')) {
+                    <span class="error">Enter a price between 1 and 10000.</span>
+                  }
+                </div>
+
+                <div class="field">
+                  <label for="r-guests">Max guests</label>
+                  <input id="r-guests" type="number" formControlName="maxGuests"
+                         min="1" max="20" [class.is-invalid]="invalid('maxGuests')">
+                  @if (invalid('maxGuests')) {
+                    <span class="error">Enter a number between 1 and 20.</span>
+                  }
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="r-img">Image URL</label>
+                <input id="r-img" type="url" formControlName="imageUrl"
+                       placeholder="https://images.unsplash.com/photo-..."
+                       [class.is-invalid]="invalid('imageUrl')">
+                @if (invalid('imageUrl')) { <span class="error">An image URL is required.</span> }
+              </div>
+
+              <label class="switch">
+                <input type="checkbox" formControlName="isAvailable">
+                <span>Open for booking</span>
+              </label>
+            </div>
+
+            <!-- ცოცხალი გადახედვა -->
+            <div class="admin-form__preview">
+              <span class="preview-label">Preview</span>
+              <img [src]="form.controls.imageUrl.value || ''"
+                   alt="Room preview" appImgFallback>
+              <strong>{{ form.controls.name.value || 'Room name' }}</strong>
+              <span class="preview-price">
+                ${{ form.controls.pricePerNight.value }} / night &middot;
+                up to {{ form.controls.maxGuests.value }} guests
+              </span>
+            </div>
+          </div>
+
+          <div class="admin-form__actions">
+            <button class="btn btn--outline" type="button" (click)="closeForm()">Cancel</button>
+            <button class="btn btn--primary" type="submit" [disabled]="saving()">
+              <i class="bi bi-check-lg"></i>
+              {{ saving() ? 'Saving...' : (editingId() === null ? 'Create room' : 'Save changes') }}
+            </button>
+          </div>
+        </form>
+      </div>
+    }
+
+    <!-- ── ცხრილი ─────────────────────────────────────── -->
+    @if (loading()) {
+      <div class="spinner"></div>
+    } @else if (rooms().length === 0) {
+      <div class="empty">
+        <i class="bi bi-door-closed"></i>
+        <h3>No rooms yet</h3>
+        <p>Add the first room and it will appear on the public rooms page straight away.</p>
+        <button class="btn btn--primary" type="button" (click)="startCreate()">Add room</button>
+      </div>
+    } @else {
+      <div class="table-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>Room</th>
+              <th>Price / night</th>
+              <th>Guests</th>
+              <th>Status</th>
+              <th class="right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (room of rooms(); track room.id) {
+              <tr>
+                <td>
+                  <div class="cell-room">
+                    <img [src]="room.imageUrl" [alt]="room.name" appImgFallback loading="lazy">
+                    <div>
+                      <strong>{{ room.name }}</strong>
+                      <span>{{ room.description }}</span>
+                    </div>
+                  </div>
+                </td>
+                <td><strong>${{ room.pricePerNight }}</strong></td>
+                <td>{{ room.maxGuests }}</td>
+                <td>
+                  @if (room.isAvailable) {
+                    <span class="badge badge--confirmed"><i class="bi bi-check-lg"></i> Open</span>
+                  } @else {
+                    <span class="badge badge--cancelled"><i class="bi bi-slash-circle"></i> Closed</span>
+                  }
+                </td>
+                <td class="right">
+                  <div class="row-actions">
+                    <a class="btn btn--outline btn--sm" [routerLink]="['/rooms', room.id]" title="View">
+                      <i class="bi bi-eye"></i>
+                    </a>
+                    <button class="btn btn--outline btn--sm" type="button"
+                            (click)="startEdit(room)" title="Edit">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    @if (auth.isAdmin()) {
+                      <button class="btn btn--danger btn--sm" type="button"
+                              [disabled]="busyId() === room.id"
+                              (click)="remove(room)" title="Delete">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    }
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      @if (!auth.isAdmin()) {
+        <p class="admin-note">
+          <i class="bi bi-info-circle"></i>
+          Managers can add and edit rooms. Only an administrator can delete them.
+        </p>
+      }
+    }
+
+  </div>
+</section>

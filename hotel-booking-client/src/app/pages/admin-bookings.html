@@ -1,0 +1,137 @@
+<section class="page-head">
+  <div class="container">
+    <span class="eyebrow">Staff area</span>
+    <h1>Manage bookings</h1>
+    <p>Confirm new requests, cancel bookings and see who is arriving.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+
+    <div class="admin-bar">
+      <nav class="admin-tabs">
+        <a routerLink="/admin/rooms"><i class="bi bi-door-open"></i> Rooms</a>
+        <a routerLink="/admin/bookings" class="is-active"><i class="bi bi-calendar-check"></i> Bookings</a>
+      </nav>
+
+      <button class="btn btn--outline" type="button" (click)="load()">
+        <i class="bi bi-arrow-clockwise"></i> Refresh
+      </button>
+    </div>
+
+    @if (loading()) {
+      <div class="spinner"></div>
+    } @else if (bookings().length === 0) {
+      <div class="empty">
+        <i class="bi bi-calendar-x"></i>
+        <h3>No bookings yet</h3>
+        <p>As soon as a guest reserves a room, the request will appear here.</p>
+      </div>
+    } @else {
+
+      <!-- ── მოკლე ციფრები ──────────────────────────── -->
+      <div class="stats-row">
+        <div class="mini-stat">
+          <span>Total bookings</span>
+          <strong>{{ counts().All }}</strong>
+        </div>
+        <div class="mini-stat">
+          <span>Waiting for confirmation</span>
+          <strong class="amber">{{ counts().Pending }}</strong>
+        </div>
+        <div class="mini-stat">
+          <span>Confirmed</span>
+          <strong class="green">{{ counts().Confirmed }}</strong>
+        </div>
+        <div class="mini-stat">
+          <span>Confirmed revenue</span>
+          <strong>${{ counts().revenue }}</strong>
+        </div>
+      </div>
+
+      <!-- ── სტატუსის ფილტრი ────────────────────────── -->
+      <div class="status-filter" style="margin-bottom: 1.25rem;">
+        @for (f of filters; track f) {
+          <button type="button" [class.is-active]="filter() === f" (click)="filter.set(f)">
+            {{ f }} ({{ countFor(f) }})
+          </button>
+        }
+      </div>
+
+      @if (visible().length === 0) {
+        <div class="empty">
+          <i class="bi bi-funnel"></i>
+          <h3>Nothing with this status</h3>
+          <p>Pick another status to see more bookings.</p>
+        </div>
+      } @else {
+        <div class="table-wrap">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Guest</th>
+                <th>Room</th>
+                <th>Stay</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th class="right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (b of visible(); track b.id) {
+                <tr>
+                  <td class="text-muted">{{ b.id }}</td>
+
+                  <td>
+                    <div class="cell-guest">
+                      <strong>{{ b.guestName }}</strong>
+                      <span>{{ b.guestEmail }}</span>
+                    </div>
+                  </td>
+
+                  <td>
+                    <a [routerLink]="['/rooms', b.roomId]">{{ b.roomName }}</a>
+                  </td>
+
+                  <td>
+                    <div class="cell-dates">
+                      <strong>{{ b.checkIn | date: 'd MMM' }} &rarr; {{ b.checkOut | date: 'd MMM y' }}</strong>
+                      <span>{{ b.nights }} {{ b.nights === 1 ? 'night' : 'nights' }}</span>
+                    </div>
+                  </td>
+
+                  <td><strong>${{ b.totalPrice }}</strong></td>
+
+                  <td><span [class]="badgeClass(b.status)">{{ b.status }}</span></td>
+
+                  <td class="right">
+                    <div class="row-actions">
+                      @if (b.status === 'Pending') {
+                        <button class="btn btn--primary btn--sm" type="button"
+                                [disabled]="busyId() === b.id" (click)="confirm(b)">
+                          <i class="bi bi-check-lg"></i> Confirm
+                        </button>
+                      }
+                      @if (b.status !== 'Cancelled') {
+                        <button class="btn btn--danger btn--sm" type="button"
+                                [disabled]="busyId() === b.id" (click)="cancel(b)">
+                          <i class="bi bi-x-lg"></i> Cancel
+                        </button>
+                      }
+                      @if (b.status === 'Cancelled') {
+                        <span class="text-muted" style="font-size: .82rem;">No actions</span>
+                      }
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    }
+
+  </div>
+</section>

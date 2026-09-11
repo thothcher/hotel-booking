@@ -1,0 +1,12 @@
+**/bin
+**/obj
+**/node_modules
+**/dist
+**/.angular
+.vs
+.vscode
+.git
+*.db
+*.db-shm
+*.db-wal
+wwwroot

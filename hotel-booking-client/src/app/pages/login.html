@@ -1,0 +1,75 @@
+<section class="auth">
+  <!-- ── ფოტო ──────────────────────────────────────── -->
+  <div class="auth__media">
+    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=80"
+         alt="Hotel room" appImgFallback>
+    <div class="auth__media-text">
+      <h2>Welcome back</h2>
+      <p>Your bookings, your dates, all in one place.</p>
+    </div>
+  </div>
+
+  <!-- ── ფორმა ─────────────────────────────────────── -->
+  <div class="auth__panel">
+    <div class="auth__form">
+      <span class="eyebrow">Aurora Grand</span>
+      <h1>Sign in</h1>
+      <p class="text-muted">Enter your email and password to continue.</p>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" type="email" formControlName="email"
+                 autocomplete="email" placeholder="you@example.com"
+                 [class.is-invalid]="invalid('email')">
+          @if (invalid('email')) {
+            <span class="error">
+              @if (form.controls.email.hasError('required')) {
+                Email is required.
+              } @else {
+                Please enter a valid email address.
+              }
+            </span>
+          }
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" formControlName="password"
+                 autocomplete="current-password" placeholder="••••••••"
+                 [class.is-invalid]="invalid('password')">
+          @if (invalid('password')) {
+            <span class="error">Password is required.</span>
+          }
+        </div>
+
+        <button class="btn btn--primary btn--block" type="submit" [disabled]="loading()">
+          @if (loading()) {
+            <i class="bi bi-hourglass-split"></i> Signing in...
+          } @else {
+            <i class="bi bi-box-arrow-in-right"></i> Sign in
+          }
+        </button>
+      </form>
+
+      <p class="auth__switch">
+        Don't have an account? <a routerLink="/register">Create one</a>
+      </p>
+
+      <!-- სადემონსტრაციო ანგარიშები -->
+      <div class="demo">
+        <h3><i class="bi bi-person-badge"></i> Demo accounts</h3>
+        <p>Click one to fill the form.</p>
+        <div class="demo__list">
+          @for (a of demoAccounts; track a.email) {
+            <button type="button" class="demo__item" (click)="fillDemo(a.email, a.password)">
+              <strong>{{ a.label }}</strong>
+              <span>{{ a.email }}</span>
+              <span class="demo__pass">{{ a.password }}</span>
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

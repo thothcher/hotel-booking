@@ -1,0 +1,101 @@
+.site-footer {
+  background: var(--navy-dark);
+  color: rgba(255, 255, 255, .72);
+  padding: 3.5rem 0 1.5rem;
+  margin-top: auto;
+  font-size: .9rem;
+
+  h4 {
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+  }
+
+  a {
+    color: rgba(255, 255, 255, .72);
+    &:hover { color: var(--gold); }
+  }
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.site-footer__about {
+  p { max-width: 320px; line-height: 1.7; }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-bottom: .9rem;
+
+    i { color: var(--gold); font-size: 1.5rem; }
+    &:hover { color: var(--white); }
+  }
+}
+
+.socials {
+  display: flex;
+  gap: .6rem;
+
+  a {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, .08);
+    color: var(--white);
+    font-size: 1rem;
+
+    &:hover { background: var(--gold); color: var(--navy-dark); }
+  }
+}
+
+.contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+
+  i { color: var(--gold); margin-top: .2rem; }
+}
+
+.site-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  font-size: .82rem;
+  color: rgba(255, 255, 255, .55);
+}
+
+@media (max-width: 900px) {
+  .site-footer__grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+
+@media (max-width: 560px) {
+  .site-footer__grid { grid-template-columns: 1fr; }
+  .site-footer__bottom { flex-direction: column; }
+}

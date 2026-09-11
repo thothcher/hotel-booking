@@ -1,0 +1,209 @@
+/* ── დიდი სურათი ──────────────────────────────────────── */
+.detail__hero {
+  position: relative;
+  height: clamp(280px, 42vw, 460px);
+  background: var(--cream);
+
+  img { width: 100%; height: 100%; object-fit: cover; }
+}
+
+.detail__hero-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2.5rem 0 1.75rem;
+  background: linear-gradient(180deg, rgba(10, 31, 51, 0) 0%, rgba(10, 31, 51, .88) 100%);
+  color: var(--white);
+
+  h1 { color: var(--white); margin: 0; }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: .74rem;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .35rem;
+  }
+}
+
+/* ── განლაგება ────────────────────────────────────────── */
+.detail__layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  align-items: start;
+  gap: 2.5rem;
+}
+
+.detail__main {
+  h2 {
+    font-size: 1.35rem;
+    margin-top: 2.25rem;
+    margin-bottom: .85rem;
+  }
+
+  h2:first-of-type { margin-top: 0; }
+}
+
+.detail__desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.detail__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+  font-size: .92rem;
+  color: var(--text-muted);
+
+  span { display: inline-flex; align-items: center; gap: .45rem; }
+  i { color: var(--gold); }
+
+  .ok  { color: var(--green); i { color: var(--green); } }
+  .no  { color: var(--red);   i { color: var(--red); } }
+}
+
+/* ── კეთილმოწყობა ─────────────────────────────────────── */
+.amenity-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .85rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    font-size: .88rem;
+    padding: .7rem .85rem;
+    background: var(--cream);
+    border-radius: var(--radius-sm);
+  }
+
+  i { color: var(--gold); font-size: 1rem; }
+}
+
+.rules, .booked-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  font-size: .92rem;
+  color: var(--text-muted);
+
+  li { display: flex; align-items: center; gap: .6rem; }
+  i { color: var(--gold); }
+}
+
+.booked-list {
+  margin-top: .85rem;
+
+  li {
+    background: var(--red-soft);
+    color: var(--red);
+    padding: .55rem .85rem;
+    border-radius: var(--radius-sm);
+    font-size: .87rem;
+    width: fit-content;
+
+    i { color: var(--red); }
+  }
+}
+
+/* ── ჯავშნის ბლოკი ────────────────────────────────────── */
+.booking-box {
+  position: sticky;
+  top: calc(var(--header-h) + 1.5rem);
+  padding: 1.5rem;
+}
+
+.booking-box__price {
+  display: flex;
+  align-items: baseline;
+  gap: .4rem;
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+
+  strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    color: var(--navy);
+  }
+
+  span { color: var(--text-muted); font-size: .88rem; }
+}
+
+.booking-box__hint {
+  display: flex;
+  gap: .5rem;
+  margin: 1rem 0 0;
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+
+  i { color: var(--gold); margin-top: .12rem; }
+}
+
+/* ── ჯამის გამოთვლა ───────────────────────────────────── */
+.summary {
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin-bottom: 1.15rem;
+  font-size: .9rem;
+}
+
+.summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .3rem 0;
+  color: var(--text-muted);
+
+  &--total {
+    margin-top: .5rem;
+    padding-top: .7rem;
+    border-top: 1px solid var(--border);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--navy);
+  }
+}
+
+/* ── შენიშვნა ─────────────────────────────────────────── */
+.notice {
+  display: flex;
+  gap: .6rem;
+  padding: .9rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: .88rem;
+  line-height: 1.5;
+
+  i { margin-top: .15rem; }
+
+  &--warn {
+    background: var(--amber-soft);
+    color: var(--amber);
+  }
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 980px) {
+  .detail__layout { grid-template-columns: 1fr; }
+  .booking-box { position: static; }
+  .amenity-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+  .amenity-grid { grid-template-columns: 1fr; }
+}

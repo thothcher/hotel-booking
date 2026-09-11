@@ -1,0 +1,202 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ── ლოგო ─────────────────────────────────────────────── */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--navy);
+  white-space: nowrap;
+
+  i { color: var(--gold); font-size: 1.5rem; }
+  &:hover { color: var(--navy); }
+}
+
+/* ── ნავიგაცია ────────────────────────────────────────── */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  gap: 1.5rem;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  a {
+    font-size: .92rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: .35rem 0;
+    transition: color .18s;
+
+    &:hover { color: var(--navy); }
+
+    &.is-active {
+      color: var(--gold);
+      font-weight: 600;
+    }
+  }
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+/* ── მომხმარებლის მენიუ ───────────────────────────────── */
+.account { position: relative; }
+
+.account__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .3rem .8rem .3rem .3rem;
+  font-family: inherit;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+
+  &:hover { border-color: var(--navy-light); }
+  i { font-size: .7rem; color: var(--text-muted); }
+}
+
+.account__avatar {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--navy);
+  color: var(--white);
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+.account__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + .55rem);
+  min-width: 240px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: .4rem;
+  overflow: hidden;
+
+  a, button {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    width: 100%;
+    text-align: left;
+    padding: .6rem .7rem;
+    border: none;
+    background: none;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: .88rem;
+    color: var(--text);
+    cursor: pointer;
+
+    &:hover { background: var(--cream); color: var(--navy); }
+    i { color: var(--text-muted); width: 1rem; }
+  }
+}
+
+.account__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .2rem;
+  padding: .7rem;
+  margin-bottom: .25rem;
+  border-bottom: 1px solid var(--border);
+
+  strong { font-size: .9rem; color: var(--navy); }
+  span { font-size: .78rem; color: var(--text-muted); }
+  .badge { margin-top: .3rem; }
+}
+
+/* ── მობილურის ღილაკი ─────────────────────────────────── */
+.burger {
+  display: none;
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--navy);
+  cursor: pointer;
+  padding: .25rem;
+}
+
+/* ── მობილური ─────────────────────────────────────────── */
+@media (max-width: 940px) {
+  .burger { display: block; }
+
+  .nav {
+    display: none;
+    position: absolute;
+    left: 0; right: 0;
+    top: var(--header-h);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+
+    &--open { display: flex; }
+  }
+
+  .nav__links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+
+    a {
+      display: block;
+      padding: .7rem .25rem;
+      border-bottom: 1px solid var(--border);
+    }
+  }
+
+  .nav__actions {
+    flex-direction: column;
+    align-items: stretch;
+    .btn { width: 100%; }
+  }
+
+  .account { width: 100%; }
+  .account__trigger { width: 100%; justify-content: flex-start; }
+  .account__menu { position: static; box-shadow: none; margin-top: .5rem; }
+}

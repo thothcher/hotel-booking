@@ -1,0 +1,117 @@
+<section class="page-head">
+  <div class="container">
+    <span class="eyebrow">{{ auth.fullName() }}</span>
+    <h1>My bookings</h1>
+    <p>Everything you have reserved with us, past and upcoming.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container">
+
+    @if (loading()) {
+      <div class="spinner"></div>
+    } @else if (bookings().length === 0) {
+      <div class="empty">
+        <i class="bi bi-journal-x"></i>
+        <h3>No bookings yet</h3>
+        <p>Once you reserve a room it will show up here with all of its details.</p>
+        <a class="btn btn--primary" routerLink="/rooms">
+          <i class="bi bi-door-open"></i> Browse rooms
+        </a>
+      </div>
+    } @else {
+
+      <!-- ── სტატისტიკა ─────────────────────────────── -->
+      <div class="stats">
+        <div class="stat">
+          <span class="stat__icon"><i class="bi bi-journal-text"></i></span>
+          <div>
+            <strong>{{ stats().total }}</strong>
+            <span>Total bookings</span>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="stat__icon"><i class="bi bi-calendar-event"></i></span>
+          <div>
+            <strong>{{ stats().upcoming }}</strong>
+            <span>Upcoming stays</span>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="stat__icon"><i class="bi bi-check-circle"></i></span>
+          <div>
+            <strong>{{ stats().confirmed }}</strong>
+            <span>Confirmed</span>
+          </div>
+        </div>
+        <div class="stat">
+          <span class="stat__icon"><i class="bi bi-cash-coin"></i></span>
+          <div>
+            <strong>${{ stats().spent }}</strong>
+            <span>Total value</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ჯავშნების სია ──────────────────────────── -->
+      <div class="booking-list">
+        @for (b of bookings(); track b.id) {
+          <article class="booking" [class.booking--cancelled]="b.status === 'Cancelled'">
+            <a class="booking__img" [routerLink]="['/rooms', b.roomId]">
+              <img [src]="b.roomImageUrl" [alt]="b.roomName" appImgFallback loading="lazy">
+            </a>
+
+            <div class="booking__body">
+              <div class="booking__top">
+                <h3><a [routerLink]="['/rooms', b.roomId]">{{ b.roomName }}</a></h3>
+                <span [class]="badgeClass(b.status)">
+                  @if (b.status === 'Confirmed') { <i class="bi bi-check-lg"></i> }
+                  @if (b.status === 'Pending') { <i class="bi bi-hourglass"></i> }
+                  @if (b.status === 'Cancelled') { <i class="bi bi-x-lg"></i> }
+                  {{ b.status }}
+                </span>
+              </div>
+
+              <dl class="booking__facts">
+                <div>
+                  <dt><i class="bi bi-box-arrow-in-right"></i> Check in</dt>
+                  <dd>{{ b.checkIn | date: 'EEE, d MMM y' }}</dd>
+                </div>
+                <div>
+                  <dt><i class="bi bi-box-arrow-right"></i> Check out</dt>
+                  <dd>{{ b.checkOut | date: 'EEE, d MMM y' }}</dd>
+                </div>
+                <div>
+                  <dt><i class="bi bi-moon-stars"></i> Nights</dt>
+                  <dd>{{ b.nights }}</dd>
+                </div>
+                <div>
+                  <dt><i class="bi bi-cash"></i> Total</dt>
+                  <dd class="price">${{ b.totalPrice }}</dd>
+                </div>
+              </dl>
+
+              <div class="booking__foot">
+                <span class="booking__ref">
+                  Booking #{{ b.id }} &middot; made {{ b.createdAt | date: 'd MMM y' }}
+                </span>
+
+                @if (b.status !== 'Cancelled' && !isPast(b)) {
+                  <button class="btn btn--danger btn--sm" type="button"
+                          [disabled]="busyId() === b.id" (click)="cancel(b)">
+                    <i class="bi bi-x-circle"></i>
+                    {{ busyId() === b.id ? 'Cancelling...' : 'Cancel booking' }}
+                  </button>
+                } @else if (isPast(b) && b.status !== 'Cancelled') {
+                  <span class="badge badge--muted"><i class="bi bi-clock-history"></i> Completed</span>
+                }
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
+
+  </div>
+</section>

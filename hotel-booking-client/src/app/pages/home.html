@@ -1,0 +1,191 @@
+<!-- ══ HERO ═══════════════════════════════════════════════ -->
+<section class="hero">
+  <img class="hero__bg"
+       src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80"
+       alt="Aurora Grand Hotel" appImgFallback>
+
+  <div class="container hero__inner">
+    <span class="hero__eyebrow">Tbilisi &middot; Old Town</span>
+    <h1>A quiet room<br>in the middle of everything</h1>
+    <p>
+      Eight restored rooms, a garden terrace and a reception that never closes.
+      Choose your dates and book in under a minute.
+    </p>
+
+    <div class="hero__actions">
+      <a class="btn btn--gold" routerLink="/rooms">
+        <i class="bi bi-door-open"></i> Browse rooms
+      </a>
+      <a class="btn btn--light" routerLink="/about">
+        Our story
+      </a>
+    </div>
+  </div>
+
+  <!-- საძიებო ფორმა -->
+  <div class="container">
+    <form class="search-bar" (ngSubmit)="search()">
+      <div class="search-bar__field">
+        <label for="hero-in"><i class="bi bi-calendar-check"></i> Check in</label>
+        <input id="hero-in" type="date" name="checkIn" [min]="minDate"
+               [(ngModel)]="checkIn" (ngModelChange)="onCheckInChange()">
+      </div>
+
+      <div class="search-bar__field">
+        <label for="hero-out"><i class="bi bi-calendar-x"></i> Check out</label>
+        <input id="hero-out" type="date" name="checkOut" [min]="checkIn" [(ngModel)]="checkOut">
+      </div>
+
+      <div class="search-bar__field">
+        <label for="hero-guests"><i class="bi bi-people"></i> Guests</label>
+        <select id="hero-guests" name="guests" [(ngModel)]="guests">
+          @for (n of [1, 2, 3, 4, 5, 6]; track n) {
+            <option [value]="n">{{ n }} {{ n === 1 ? 'guest' : 'guests' }}</option>
+          }
+        </select>
+      </div>
+
+      <button class="btn btn--primary" type="submit">
+        <i class="bi bi-search"></i> Check availability
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ══ FEATURED ROOMS ═════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Where you sleep</span>
+      <h2>Rooms guests keep coming back to</h2>
+      <p>Every room has natural light, blackout curtains and a bed we tested ourselves.</p>
+    </div>
+
+    @if (loading()) {
+      <div class="spinner"></div>
+    } @else if (featured().length === 0) {
+      <p class="text-center text-muted">No rooms to show right now.</p>
+    } @else {
+      <div class="grid-3">
+        @for (room of featured(); track room.id) {
+          <app-room-card [room]="room" />
+        }
+      </div>
+
+      <div class="text-center" style="margin-top: 2.5rem;">
+        <a class="btn btn--outline" routerLink="/rooms">
+          See all rooms <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ══ AMENITIES ══════════════════════════════════════════ -->
+<section class="section section--cream">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Included with every stay</span>
+      <h2>Small things, done properly</h2>
+    </div>
+
+    <div class="amenities">
+      @for (a of amenities; track a.title) {
+        <div class="amenity">
+          <span class="amenity__icon"><i class="bi {{ a.icon }}"></i></span>
+          <h3>{{ a.title }}</h3>
+          <p>{{ a.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT STRIP ════════════════════════════════════════ -->
+<section class="section">
+  <div class="container split">
+    <div class="split__media">
+      <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=80"
+           alt="Aurora Grand at dusk" appImgFallback loading="lazy">
+    </div>
+
+    <div class="split__text">
+      <span class="eyebrow">Since 1998</span>
+      <h2>A family hotel that grew up slowly</h2>
+      <p>
+        Aurora Grand started with four rooms above a bakery. Today it has eight,
+        a garden terrace and the same family at the front desk.
+      </p>
+      <p>
+        We are two minutes from the funicular and ten from the river, which means
+        you can walk everywhere and still sleep in silence.
+      </p>
+
+      <ul class="checklist">
+        <li><i class="bi bi-check2-circle"></i> Free cancellation up to 24 hours before arrival</li>
+        <li><i class="bi bi-check2-circle"></i> Early check-in whenever the room is ready</li>
+        <li><i class="bi bi-check2-circle"></i> No booking fees, no card charged online</li>
+      </ul>
+
+      <a class="btn btn--primary" routerLink="/about">Read our story</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ════════════════════════════════════════════ -->
+<section class="section section--tight section--cream">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Around the hotel</span>
+      <h2>A look inside</h2>
+    </div>
+
+    <div class="gallery">
+      @for (g of gallery; track g.url) {
+        <figure>
+          <img [src]="g.url" [alt]="g.alt" appImgFallback loading="lazy">
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ══ REVIEWS ════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Guest reviews</span>
+      <h2>What people said</h2>
+    </div>
+
+    <div class="grid-3">
+      @for (r of reviews; track r.name) {
+        <blockquote class="review">
+          <div class="review__stars">
+            @for (s of [1, 2, 3, 4, 5]; track s) {
+              <i class="bi bi-star-fill"></i>
+            }
+          </div>
+          <p>{{ r.text }}</p>
+          <footer>
+            <strong>{{ r.name }}</strong>
+            <span>{{ r.from }}</span>
+          </footer>
+        </blockquote>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════════════ -->
+<section class="cta">
+  <div class="container cta__inner">
+    <div>
+      <h2>Ready when you are</h2>
+      <p>Pick your dates and the room is yours. Pay when you arrive.</p>
+    </div>
+    <a class="btn btn--gold" routerLink="/rooms">
+      <i class="bi bi-calendar-plus"></i> Book a room
+    </a>
+  </div>
+</section>
