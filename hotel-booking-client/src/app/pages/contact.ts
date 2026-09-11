@@ -28,7 +28,7 @@ export class Contact {
   protected readonly details = [
     { title: 'Address',  lines: ['12 Rustaveli Avenue', 'Tbilisi 0108, Georgia'] },
     { title: 'Phone',    lines: ['+995 322 000 000', 'Reception, 24 hours'] },
-    { title: 'Email',    lines: ['stay@auroragrand.example', 'We reply within a day'] },
+    { title: 'Email',    lines: ['shotaakhvlediani@hotmail.com', 'We reply within a day'] },
     { title: 'Check-in', lines: ['From 14:00', 'Check-out until 12:00'] },
     { title: 'Breakfast', lines: ['07:00 - 12:00', 'Restaurant, ground floor'] },
   ];

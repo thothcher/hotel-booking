@@ -5,19 +5,21 @@
    =================================================================== */
 
 :root {
-  /* ფერები */
-  --navy:        #0f2b46;
-  --navy-dark:   #0a1f33;
-  --navy-light:  #1c4770;
-  --gold:        #c9a227;
-  --gold-light:  #e2be4a;
-  --gold-soft:   #f6efd9;
+  /* ფერები — პალიტრა: silver, taupe, mauve-bark, terracotta-clay, espresso */
+  --espresso:        #5a2a27;
+  --espresso-dark:   #3a1c1a;
+  --mauve-bark:      #5c4742;
+  --terracotta:      #8d5b4c;
+  --terracotta-dark: #784d41;
+  --terracotta-soft: #f3ebe7;
+  --taupe:           #a5978b;
+  --silver:          #c4bbaf;
 
-  --cream:       #faf8f5;
+  --cream:       #f7f4f0;
   --white:       #ffffff;
-  --text:        #1f2933;
-  --text-muted:  #6b7280;
-  --border:      #e5e7eb;
+  --text:        #2e2220;
+  --text-muted:  #6f625b;
+  --border:      #e6e0da;
 
   --green:       #15803d;
   --green-soft:  #dcfce7;
@@ -29,8 +31,8 @@
   /* ზომები */
   --radius:      4px;
   --radius-sm:   3px;
-  --shadow:      0 1px 2px rgba(15, 43, 70, .07);
-  --shadow-lg:   0 6px 18px rgba(15, 43, 70, .13);
+  --shadow:      0 1px 2px rgba(58, 28, 26, .07);
+  --shadow-lg:   0 6px 18px rgba(58, 28, 26, .13);
   --container:   1180px;
   --header-h:    72px;
 }
@@ -51,21 +53,22 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--navy);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-synthesis-weight: none;   /* შრიფტს ერთი სისქე აქვს — ყალბი bold არ გვინდა */
+  line-height: 1.1;
+  color: var(--espresso);
   margin: 0 0 .6rem;
 }
 
-h1 { font-size: clamp(2rem, 4.5vw, 3.1rem); }
-h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); }
-h3 { font-size: 1.25rem; }
+h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); }
+h2 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); }
+h3 { font-size: 1.45rem; }
 
 p { margin: 0 0 1rem; }
 
-a { color: var(--navy); text-decoration: none; }
-a:hover { color: var(--gold); }
+a { color: var(--espresso); text-decoration: none; }
+a:hover { color: var(--terracotta); }
 
 img { max-width: 100%; display: block; }
 
@@ -92,7 +95,7 @@ img { max-width: 100%; display: block; }
     font-weight: 600;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--terracotta);
     margin-bottom: .5rem;
   }
 
@@ -133,29 +136,29 @@ img { max-width: 100%; display: block; }
 }
 
 .btn--primary {
-  background: var(--navy);
+  background: var(--espresso);
   color: var(--white);
-  &:hover:not(:disabled) { background: var(--navy-light); color: var(--white); }
+  &:hover:not(:disabled) { background: var(--mauve-bark); color: var(--white); }
 }
 
-.btn--gold {
-  background: var(--gold);
-  color: var(--navy-dark);
-  &:hover:not(:disabled) { background: #b8931f; color: var(--navy-dark); }
+.btn--accent {
+  background: var(--terracotta);
+  color: var(--white);
+  &:hover:not(:disabled) { background: var(--terracotta-dark); color: var(--white); }
 }
 
 .btn--outline {
   background: transparent;
-  color: var(--navy);
+  color: var(--espresso);
   border-color: var(--border);
-  &:hover:not(:disabled) { border-color: var(--navy); background: var(--cream); }
+  &:hover:not(:disabled) { border-color: var(--espresso); background: var(--cream); }
 }
 
 .btn--light {
   background: rgba(255, 255, 255, .16);
   color: var(--white);
   border-color: rgba(255, 255, 255, .5);
-  &:hover:not(:disabled) { background: var(--white); color: var(--navy); }
+  &:hover:not(:disabled) { background: var(--white); color: var(--espresso); }
 }
 
 .btn--danger {
@@ -175,7 +178,7 @@ img { max-width: 100%; display: block; }
   display: block;
   font-size: .85rem;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--espresso);
   margin-bottom: .4rem;
 }
 
@@ -194,8 +197,8 @@ img { max-width: 100%; display: block; }
 
   &:focus {
     outline: none;
-    border-color: var(--navy-light);
-    box-shadow: 0 0 0 3px rgba(28, 71, 112, .12);
+    border-color: var(--mauve-bark);
+    box-shadow: 0 0 0 3px rgba(92, 71, 66, .18);
   }
 
   &.is-invalid {
@@ -247,7 +250,7 @@ img { max-width: 100%; display: block; }
 .badge--pending   { background: var(--amber-soft); color: var(--amber); }
 .badge--confirmed { background: var(--green-soft); color: var(--green); }
 .badge--cancelled { background: var(--red-soft);   color: var(--red); }
-.badge--muted     { background: #eef1f4;           color: var(--text-muted); }
+.badge--muted     { background: #efeae6;           color: var(--text-muted); }
 
 /* ── Tables ──────────────────────────────────────────────── */
 .table-wrap {
@@ -283,12 +286,12 @@ table.data {
   }
 
   tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover { background: #fcfbf9; }
+  tbody tr:hover { background: #faf7f4; }
 }
 
 /* ── Page header (შიდა გვერდების სათაური) ───────────────── */
 .page-head {
-  background: var(--navy);
+  background: var(--espresso);
   color: var(--white);
   padding: 3.25rem 0;
   text-align: center;
@@ -296,7 +299,7 @@ table.data {
   h1 { color: var(--white); margin-bottom: .4rem; }
 
   p {
-    color: rgba(255, 255, 255, .76);
+    color: var(--silver);
     max-width: 620px;
     margin: 0 auto;
   }
@@ -307,7 +310,7 @@ table.data {
     font-weight: 600;
     letter-spacing: .2em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--silver);
     margin-bottom: .5rem;
   }
 }
@@ -322,7 +325,7 @@ table.data {
 
   i {
     font-size: 2.4rem;
-    color: var(--gold);
+    color: var(--terracotta);
     display: block;
     margin-bottom: .9rem;
   }
@@ -342,7 +345,7 @@ table.data {
   width: 34px;
   height: 34px;
   border: 3px solid var(--border);
-  border-top-color: var(--gold);
+  border-top-color: var(--terracotta);
   border-radius: 50%;
   animation: spin .8s linear infinite;
   margin: 2.5rem auto;

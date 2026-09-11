@@ -17,9 +17,10 @@
 
   strong {
     display: block;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
     font-size: 1.6rem;
-    color: var(--navy);
+    color: var(--espresso);
     line-height: 1.1;
   }
 
@@ -33,8 +34,8 @@
   height: 42px;
   flex-shrink: 0;
   border-radius: var(--radius);
-  background: var(--gold-soft);
-  color: var(--gold);
+  background: var(--terracotta-soft);
+  color: var(--terracotta);
   font-size: 1.15rem;
 }
 
@@ -78,7 +79,7 @@
   gap: 1rem;
   margin-bottom: 1rem;
 
-  h3 { margin: 0; font-size: 1.2rem; }
+  h3 { margin: 0; font-size: 1.5rem; }
 }
 
 /* ── დეტალები ─────────────────────────────────────────── */
@@ -101,7 +102,7 @@
     color: var(--text-muted);
     margin-bottom: .25rem;
 
-    i { color: var(--gold); font-size: .85rem; }
+    i { color: var(--terracotta); font-size: .85rem; }
   }
 
   dd {
@@ -111,7 +112,7 @@
     color: var(--text);
   }
 
-  .price { color: var(--navy); font-weight: 700; }
+  .price { color: var(--espresso); font-weight: 700; }
 }
 
 .booking__foot {

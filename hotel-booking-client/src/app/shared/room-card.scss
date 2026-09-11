@@ -34,7 +34,7 @@
   position: absolute;
   right: .75rem;
   bottom: .75rem;
-  background: rgba(15, 43, 70, .92);
+  background: rgba(90, 42, 39, .92);
   color: var(--white);
   font-weight: 700;
   font-size: 1.05rem;
@@ -64,7 +64,7 @@
   flex: 1;
   padding: 1.25rem;
 
-  h3 { margin-bottom: .5rem; font-size: 1.2rem; }
+  h3 { margin-bottom: .5rem; font-size: 1.55rem; }
 
   p {
     color: var(--text-muted);
@@ -91,5 +91,5 @@
   color: var(--text-muted);
 
   li { display: inline-flex; align-items: center; gap: .35rem; }
-  i { color: var(--gold); }
+  i { color: var(--terracotta); }
 }

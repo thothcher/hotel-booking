@@ -28,17 +28,6 @@ export class Login {
     password: ['', [Validators.required]],
   });
 
-  // სადემონსტრაციო ანგარიშები — ერთი კლიკით შევსება
-  protected readonly demoAccounts = [
-    { label: 'Administrator', email: 'admin@hotel.com',   password: 'Admin123!' },
-    { label: 'Manager',       email: 'manager@hotel.com', password: 'Manager123!' },
-    { label: 'Guest',         email: 'guest@hotel.com',   password: 'Guest123!' },
-  ];
-
-  fillDemo(email: string, password: string) {
-    this.form.patchValue({ email, password });
-  }
-
   submit() {
     this.submitted.set(true);
     if (this.form.invalid || this.loading()) return;

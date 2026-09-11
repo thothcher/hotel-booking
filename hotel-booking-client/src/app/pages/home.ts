@@ -44,12 +44,6 @@ export class Home {
     { url: 'https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=800&q=80', alt: 'The spa' },
   ];
 
-  protected readonly reviews = [
-    { name: 'Mariam K.', from: 'Batumi',  text: 'The room was spotless and the staff remembered our names on day two. We will come back in spring.' },
-    { name: 'Lukas B.',  from: 'Vienna',  text: 'Quiet, central and beautifully restored. Breakfast alone is worth the stay.' },
-    { name: 'Ana P.',    from: 'Lisbon',  text: 'Booking took two minutes and the balcony view was exactly like the photos.' },
-  ];
-
   constructor() {
     // მთავარ გვერდზე მხოლოდ 3 ოთახს ვაჩვენებთ
     this.roomService.getAll().subscribe({

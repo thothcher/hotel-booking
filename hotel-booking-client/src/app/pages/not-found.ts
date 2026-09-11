@@ -20,7 +20,7 @@ import { ImgFallbackDirective } from '../shared/img-fallback.directive';
           existed in the first place. Let's get you back.
         </p>
         <div class="nf__actions">
-          <a class="btn btn--gold" routerLink="/"><i class="bi bi-house"></i> Back home</a>
+          <a class="btn btn--accent" routerLink="/"><i class="bi bi-house"></i> Back home</a>
           <a class="btn btn--light" routerLink="/rooms">Browse rooms</a>
         </div>
       </div>

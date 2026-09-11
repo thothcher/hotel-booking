@@ -13,7 +13,7 @@
     </p>
 
     <div class="hero__actions">
-      <a class="btn btn--gold" routerLink="/rooms">
+      <a class="btn btn--accent" routerLink="/rooms">
         <i class="bi bi-door-open"></i> Browse rooms
       </a>
       <a class="btn btn--light" routerLink="/about">
@@ -150,33 +150,6 @@
   </div>
 </section>
 
-<!-- ══ REVIEWS ════════════════════════════════════════════ -->
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Guest reviews</span>
-      <h2>What people said</h2>
-    </div>
-
-    <div class="grid-3">
-      @for (r of reviews; track r.name) {
-        <blockquote class="review">
-          <div class="review__stars">
-            @for (s of [1, 2, 3, 4, 5]; track s) {
-              <i class="bi bi-star-fill"></i>
-            }
-          </div>
-          <p>{{ r.text }}</p>
-          <footer>
-            <strong>{{ r.name }}</strong>
-            <span>{{ r.from }}</span>
-          </footer>
-        </blockquote>
-      }
-    </div>
-  </div>
-</section>
-
 <!-- ══ CTA ════════════════════════════════════════════════ -->
 <section class="cta">
   <div class="container cta__inner">
@@ -184,7 +157,7 @@
       <h2>Ready when you are</h2>
       <p>Pick your dates and the room is yours. Pay when you arrive.</p>
     </div>
-    <a class="btn btn--gold" routerLink="/rooms">
+    <a class="btn btn--accent" routerLink="/rooms">
       <i class="bi bi-calendar-plus"></i> Book a room
     </a>
   </div>

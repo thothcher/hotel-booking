@@ -17,7 +17,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 31, 51, .35) 0%, rgba(10, 31, 51, .85) 100%);
+    background: linear-gradient(180deg, rgba(58, 28, 26, .35) 0%, rgba(58, 28, 26, .85) 100%);
   }
 }
 
@@ -55,7 +55,7 @@
     font-weight: 600;
     letter-spacing: .2em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--terracotta);
     margin-bottom: .4rem;
   }
 
@@ -68,72 +68,7 @@
   color: var(--text-muted);
   margin: 1.5rem 0 0;
 
-  a { font-weight: 600; color: var(--navy); text-decoration: underline; }
-}
-
-/* ── დემო ანგარიშები ──────────────────────────────────── */
-.demo {
-  margin-top: 2rem;
-  padding: 1.15rem;
-  background: var(--white);
-  border: 1px dashed var(--border);
-  border-radius: var(--radius);
-
-  h3 {
-    display: flex;
-    align-items: center;
-    gap: .45rem;
-    font-family: 'Inter', sans-serif;
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: .25rem;
-
-    i { color: var(--gold); font-size: .95rem; }
-  }
-
-  > p { font-size: .82rem; color: var(--text-muted); margin-bottom: .85rem; }
-}
-
-.demo__list {
-  display: flex;
-  flex-direction: column;
-  gap: .45rem;
-}
-
-.demo__item {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: .15rem .75rem;
-  width: 100%;
-  text-align: left;
-  padding: .55rem .75rem;
-  background: var(--cream);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color .2s, background .2s;
-
-  &:hover { border-color: var(--gold); background: var(--gold-soft); }
-
-  strong { font-size: .85rem; color: var(--navy); }
-  span   { font-size: .78rem; color: var(--text-muted); grid-column: 1; }
-}
-
-.demo__pass {
-  grid-column: 2 !important;
-  grid-row: 1 / span 2;
-  font-family: ui-monospace, 'Cascadia Code', monospace;
-  font-size: .75rem !important;
-  color: var(--navy) !important;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: .15rem .4rem;
+  a { font-weight: 600; color: var(--espresso); text-decoration: underline; }
 }
 
 /* ── RESPONSIVE ───────────────────────────────────────── */
@@ -145,6 +80,6 @@
     order: -1;
   }
 
-  .auth__media-text { padding: 1.5rem; h2 { font-size: 1.5rem; } }
+  .auth__media-text { padding: 1.5rem; h2 { font-size: 1.8rem; } }
   .auth__panel { padding: 2.5rem 1.25rem; }
 }

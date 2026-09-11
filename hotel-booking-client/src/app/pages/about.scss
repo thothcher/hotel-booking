@@ -12,7 +12,7 @@
     font-weight: 600;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--terracotta);
     margin-bottom: .5rem;
   }
 
@@ -29,7 +29,7 @@
 
 /* ── ციფრები ──────────────────────────────────────────── */
 .numbers {
-  background: var(--navy);
+  background: var(--espresso);
   color: var(--white);
   padding: 3rem 0;
 }
@@ -44,9 +44,10 @@
 .number {
   strong {
     display: block;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
     font-size: 2.6rem;
-    color: var(--gold);
+    color: var(--silver);
     line-height: 1.1;
   }
 
@@ -76,13 +77,13 @@
     width: 54px;
     height: 54px;
     border-radius: var(--radius-sm);
-    background: var(--gold-soft);
-    color: var(--gold);
+    background: var(--terracotta-soft);
+    color: var(--terracotta);
     font-size: 1.4rem;
     margin-bottom: 1rem;
   }
 
-  h3 { font-size: 1.1rem; margin-bottom: .3rem; }
+  h3 { font-size: 1.4rem; margin-bottom: .3rem; }
   p  { color: var(--text-muted); font-size: .9rem; margin: 0; }
 }
 
@@ -110,14 +111,14 @@
     padding: 1.1rem 1.25rem;
     text-align: center;
 
-    strong { display: block; color: var(--navy); font-size: 1rem; }
+    strong { display: block; color: var(--espresso); font-size: 1rem; }
     span   { font-size: .84rem; color: var(--text-muted); }
   }
 }
 
 /* ── CTA ──────────────────────────────────────────────── */
 .cta-band {
-  background: var(--navy-dark);
+  background: var(--espresso-dark);
   color: var(--white);
   padding: 3.25rem 0;
 

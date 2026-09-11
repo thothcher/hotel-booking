@@ -26,7 +26,7 @@
   padding-bottom: .9rem;
   border-bottom: 1px solid var(--border);
 
-  i { color: var(--gold); font-size: 1rem; }
+  i { color: var(--terracotta); font-size: 1rem; }
 }
 
 .filters__note {
@@ -39,7 +39,7 @@
   line-height: 1.5;
   color: var(--text-muted);
 
-  i { color: var(--gold); margin-top: .12rem; }
+  i { color: var(--terracotta); margin-top: .12rem; }
 }
 
 /* ── შედეგები ─────────────────────────────────────────── */
@@ -48,7 +48,7 @@
   color: var(--text-muted);
   margin-bottom: 1.25rem;
 
-  strong { color: var(--navy); }
+  strong { color: var(--espresso); }
 }
 
 .results__grid {

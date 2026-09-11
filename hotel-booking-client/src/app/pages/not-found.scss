@@ -12,7 +12,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(10, 31, 51, .86);
+    background: rgba(58, 28, 26, .86);
     z-index: -1;
   }
 }
@@ -39,11 +39,11 @@
 
 .nf__code {
   display: block;
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(4.5rem, 14vw, 8rem);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1;
-  color: var(--gold);
+  color: var(--silver);
   margin-bottom: .5rem;
 }
 

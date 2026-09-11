@@ -28,10 +28,10 @@
     font-weight: 500;
     color: var(--text-muted);
 
-    &:hover { color: var(--navy); }
+    &:hover { color: var(--espresso); }
 
     &.is-active {
-      background: var(--navy);
+      background: var(--espresso);
       color: var(--white);
     }
   }
@@ -57,7 +57,7 @@
   margin-bottom: 1.25rem;
   border-bottom: 1px solid var(--border);
 
-  h2 { margin: 0; font-size: 1.25rem; }
+  h2 { margin: 0; font-size: 1.55rem; }
 }
 
 .icon-btn {
@@ -106,7 +106,7 @@
     background: var(--border);
   }
 
-  strong { color: var(--navy); font-size: .98rem; }
+  strong { color: var(--espresso); font-size: .98rem; }
 }
 
 .preview-label {
@@ -127,10 +127,10 @@
   gap: .55rem;
   font-size: .9rem;
   font-weight: 500;
-  color: var(--navy);
+  color: var(--espresso);
   cursor: pointer;
 
-  input { width: 18px; height: 18px; accent-color: var(--navy); cursor: pointer; }
+  input { width: 18px; height: 18px; accent-color: var(--espresso); cursor: pointer; }
 }
 
 /* ── ცხრილის უჯრები ───────────────────────────────────── */
@@ -149,7 +149,7 @@
     background: var(--cream);
   }
 
-  strong { display: block; color: var(--navy); font-size: .92rem; }
+  strong { display: block; color: var(--espresso); font-size: .92rem; }
 
   span {
     display: -webkit-box;
@@ -164,7 +164,7 @@
 }
 
 .cell-guest {
-  strong { display: block; color: var(--navy); font-size: .9rem; }
+  strong { display: block; color: var(--espresso); font-size: .9rem; }
   span   { font-size: .8rem; color: var(--text-muted); }
 }
 
@@ -211,9 +211,10 @@ th.right, td.right { text-align: right; }
   }
 
   strong {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
     font-size: 1.7rem;
-    color: var(--navy);
+    color: var(--espresso);
     line-height: 1.15;
   }
 
@@ -234,7 +235,7 @@ th.right, td.right { text-align: right; }
   font-size: .84rem;
   color: var(--text-muted);
 
-  i { color: var(--gold); }
+  i { color: var(--terracotta); }
 }
 
 /* ── ფილტრები (bookings) ──────────────────────────────── */
@@ -254,11 +255,11 @@ th.right, td.right { text-align: right; }
     cursor: pointer;
     transition: border-color .2s, background .2s, color .2s;
 
-    &:hover { border-color: var(--navy-light); color: var(--navy); }
+    &:hover { border-color: var(--mauve-bark); color: var(--espresso); }
 
     &.is-active {
-      background: var(--navy);
-      border-color: var(--navy);
+      background: var(--espresso);
+      border-color: var(--espresso);
       color: var(--white);
     }
   }

@@ -11,7 +11,7 @@
   position: absolute;
   inset: auto 0 0 0;
   padding: 2.5rem 0 1.75rem;
-  background: linear-gradient(180deg, rgba(10, 31, 51, 0) 0%, rgba(10, 31, 51, .88) 100%);
+  background: linear-gradient(180deg, rgba(58, 28, 26, 0) 0%, rgba(58, 28, 26, .88) 100%);
   color: var(--white);
 
   h1 { color: var(--white); margin: 0; }
@@ -22,7 +22,7 @@
     font-weight: 600;
     letter-spacing: .2em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--silver);
     margin-bottom: .35rem;
   }
 }
@@ -37,7 +37,7 @@
 
 .detail__main {
   h2 {
-    font-size: 1.35rem;
+    font-size: 1.7rem;
     margin-top: 2.25rem;
     margin-bottom: .85rem;
   }
@@ -62,7 +62,7 @@
   color: var(--text-muted);
 
   span { display: inline-flex; align-items: center; gap: .45rem; }
-  i { color: var(--gold); }
+  i { color: var(--terracotta); }
 
   .ok  { color: var(--green); i { color: var(--green); } }
   .no  { color: var(--red);   i { color: var(--red); } }
@@ -87,7 +87,7 @@
     border-radius: var(--radius-sm);
   }
 
-  i { color: var(--gold); font-size: 1rem; }
+  i { color: var(--terracotta); font-size: 1rem; }
 }
 
 .rules, .booked-list {
@@ -101,7 +101,7 @@
   color: var(--text-muted);
 
   li { display: flex; align-items: center; gap: .6rem; }
-  i { color: var(--gold); }
+  i { color: var(--terracotta); }
 }
 
 .booked-list {
@@ -135,9 +135,10 @@
   border-bottom: 1px solid var(--border);
 
   strong {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
     font-size: 2rem;
-    color: var(--navy);
+    color: var(--espresso);
   }
 
   span { color: var(--text-muted); font-size: .88rem; }
@@ -151,7 +152,7 @@
   line-height: 1.5;
   color: var(--text-muted);
 
-  i { color: var(--gold); margin-top: .12rem; }
+  i { color: var(--terracotta); margin-top: .12rem; }
 }
 
 /* ── ჯამის გამოთვლა ───────────────────────────────────── */
@@ -176,7 +177,7 @@
     border-top: 1px solid var(--border);
     font-weight: 700;
     font-size: 1.05rem;
-    color: var(--navy);
+    color: var(--espresso);
   }
 }
 

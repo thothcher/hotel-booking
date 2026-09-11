@@ -55,21 +55,6 @@
       <p class="auth__switch">
         Don't have an account? <a routerLink="/register">Create one</a>
       </p>
-
-      <!-- სადემონსტრაციო ანგარიშები -->
-      <div class="demo">
-        <h3><i class="bi bi-person-badge"></i> Demo accounts</h3>
-        <p>Click one to fill the form.</p>
-        <div class="demo__list">
-          @for (a of demoAccounts; track a.email) {
-            <button type="button" class="demo__item" (click)="fillDemo(a.email, a.password)">
-              <strong>{{ a.label }}</strong>
-              <span>{{ a.email }}</span>
-              <span class="demo__pass">{{ a.password }}</span>
-            </button>
-          }
-        </div>
-      </div>
     </div>
   </div>
 </section>

@@ -1,6 +1,6 @@
 .site-footer {
-  background: var(--navy-dark);
-  color: rgba(255, 255, 255, .72);
+  background: var(--espresso-dark);
+  color: var(--silver);
   padding: 3.5rem 0 1.5rem;
   margin-top: auto;
   font-size: .9rem;
@@ -25,8 +25,8 @@
   }
 
   a {
-    color: rgba(255, 255, 255, .72);
-    &:hover { color: var(--gold); }
+    color: var(--silver);
+    &:hover { color: var(--white); }
   }
 }
 
@@ -44,12 +44,12 @@
     display: inline-flex;
     align-items: center;
     gap: .6rem;
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.3rem;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 1.5rem;
     color: var(--white);
     margin-bottom: .9rem;
 
-    i { color: var(--gold); font-size: 1.5rem; }
+    i { color: var(--silver); font-size: 1.5rem; }
     &:hover { color: var(--white); }
   }
 }
@@ -68,7 +68,7 @@
     color: var(--white);
     font-size: 1rem;
 
-    &:hover { background: var(--gold); color: var(--navy-dark); }
+    &:hover { background: var(--silver); color: var(--espresso-dark); }
   }
 }
 
@@ -77,7 +77,7 @@
   align-items: flex-start;
   gap: .6rem;
 
-  i { color: var(--gold); margin-top: .2rem; }
+  i { color: var(--silver); margin-top: .2rem; }
 }
 
 .site-footer__bottom {
@@ -88,7 +88,7 @@
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, .1);
   font-size: .82rem;
-  color: rgba(255, 255, 255, .55);
+  color: var(--taupe);
 }
 
 @media (max-width: 900px) {

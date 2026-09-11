@@ -10,7 +10,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 31, 51, .78) 0%, rgba(10, 31, 51, .62) 55%, rgba(10, 31, 51, .9) 100%);
+    background: linear-gradient(180deg, rgba(58, 28, 26, .78) 0%, rgba(58, 28, 26, .62) 55%, rgba(58, 28, 26, .9) 100%);
     z-index: -1;
   }
 }
@@ -38,7 +38,7 @@
   font-weight: 600;
   letter-spacing: .2em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--silver);
   margin-bottom: 1rem;
 }
 
@@ -76,7 +76,7 @@
     color: var(--text-muted);
     margin-bottom: .4rem;
 
-    i { color: var(--gold); font-size: .9rem; }
+    i { color: var(--terracotta); font-size: .9rem; }
   }
 
   input, select {
@@ -92,8 +92,8 @@
 
     &:focus {
       outline: none;
-      border-color: var(--navy-light);
-      box-shadow: 0 0 0 3px rgba(28, 71, 112, .12);
+      border-color: var(--mauve-bark);
+      box-shadow: 0 0 0 3px rgba(92, 71, 66, .18);
     }
   }
 }
@@ -121,7 +121,7 @@
 
   &:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
 
-  h3 { font-size: 1.08rem; margin-bottom: .35rem; }
+  h3 { font-size: 1.4rem; margin-bottom: .35rem; }
   p  { color: var(--text-muted); font-size: .9rem; margin: 0; }
 }
 
@@ -131,8 +131,8 @@
   width: 48px;
   height: 48px;
   border-radius: var(--radius);
-  background: var(--gold-soft);
-  color: var(--gold);
+  background: var(--terracotta-soft);
+  color: var(--terracotta);
   font-size: 1.35rem;
   margin-bottom: 1rem;
 }
@@ -160,7 +160,7 @@
     font-weight: 600;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--terracotta);
     margin-bottom: .5rem;
   }
 
@@ -177,7 +177,7 @@
   font-size: .92rem;
 
   li { display: flex; align-items: flex-start; gap: .6rem; }
-  i  { color: var(--gold); margin-top: .18rem; }
+  i  { color: var(--terracotta); margin-top: .18rem; }
 }
 
 /* ── GALLERY ──────────────────────────────────────────── */
@@ -202,42 +202,9 @@
   }
 }
 
-/* ── REVIEWS ──────────────────────────────────────────── */
-.review {
-  margin: 0;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.75rem;
-
-  p {
-    font-size: .95rem;
-    color: var(--text);
-    font-style: italic;
-    margin-bottom: 1.25rem;
-  }
-
-  footer {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--border);
-    padding-top: .9rem;
-
-    strong { color: var(--navy); font-size: .92rem; }
-    span   { color: var(--text-muted); font-size: .82rem; }
-  }
-}
-
-.review__stars {
-  color: var(--gold);
-  font-size: .85rem;
-  letter-spacing: .1em;
-  margin-bottom: .9rem;
-}
-
 /* ── CTA ──────────────────────────────────────────────── */
 .cta {
-  background: var(--navy);
+  background: var(--espresso);
   color: var(--white);
   padding: 3.5rem 0;
 

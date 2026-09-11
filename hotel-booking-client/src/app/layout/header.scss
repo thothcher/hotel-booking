@@ -18,14 +18,14 @@
   display: inline-flex;
   align-items: center;
   gap: .6rem;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--navy);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--espresso);
   white-space: nowrap;
 
-  i { color: var(--gold); font-size: 1.5rem; }
-  &:hover { color: var(--navy); }
+  i { color: var(--terracotta); font-size: 1.5rem; }
+  &:hover { color: var(--espresso); }
 }
 
 /* ── ნავიგაცია ────────────────────────────────────────── */
@@ -52,10 +52,10 @@
     padding: .35rem 0;
     transition: color .18s;
 
-    &:hover { color: var(--navy); }
+    &:hover { color: var(--espresso); }
 
     &.is-active {
-      color: var(--gold);
+      color: var(--terracotta);
       font-weight: 600;
     }
   }
@@ -84,7 +84,7 @@
   color: var(--text);
   cursor: pointer;
 
-  &:hover { border-color: var(--navy-light); }
+  &:hover { border-color: var(--mauve-bark); }
   i { font-size: .7rem; color: var(--text-muted); }
 }
 
@@ -94,7 +94,7 @@
   display: grid;
   place-items: center;
   border-radius: var(--radius-sm);
-  background: var(--navy);
+  background: var(--espresso);
   color: var(--white);
   font-size: .75rem;
   font-weight: 700;
@@ -127,7 +127,7 @@
     color: var(--text);
     cursor: pointer;
 
-    &:hover { background: var(--cream); color: var(--navy); }
+    &:hover { background: var(--cream); color: var(--espresso); }
     i { color: var(--text-muted); width: 1rem; }
   }
 }
@@ -141,7 +141,7 @@
   margin-bottom: .25rem;
   border-bottom: 1px solid var(--border);
 
-  strong { font-size: .9rem; color: var(--navy); }
+  strong { font-size: .9rem; color: var(--espresso); }
   span { font-size: .78rem; color: var(--text-muted); }
   .badge { margin-top: .3rem; }
 }
@@ -153,7 +153,7 @@
   background: none;
   border: none;
   font-size: 1.4rem;
-  color: var(--navy);
+  color: var(--espresso);
   cursor: pointer;
   padding: .25rem;
 }
